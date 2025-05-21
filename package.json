@@ -1,8 +1,12 @@
 {
-  "name": "Peminjaman",
+  "name": "peminjaman",
+  "version": "1.0.0",
+  "description": "To install dependencies: ```sh npm install ```",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "ts-node src/index.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -13,8 +17,21 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "@types/bun": "latest",
     "@types/jsonwebtoken": "^9.0.9",
-    "prisma": "^6.7.0"
-  }
+    "prisma": "^6.7.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mhafizakbar/PWEB-BE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mhafizakbar/PWEB-BE/issues"
+  },
+  "homepage": "https://github.com/Mhafizakbar/PWEB-BE#readme"
 }
