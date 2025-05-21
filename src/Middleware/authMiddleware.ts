@@ -6,7 +6,7 @@ const USER_SECRET = 'RAHASIA_USER'
 const ADMIN_SECRET = 'RAHASIA_ADMIN'
 
 export const authMiddleware: MiddlewareHandler = async (c, next) => {
-  // Ambil token dari cookie, bukan header Authorization
+  
   const token = getCookie(c, 'token')
 
   if (!token) {
