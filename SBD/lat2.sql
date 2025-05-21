@@ -1,0 +1,16 @@
+DECLARE
+    V_NILAI VARCHAR2(2);
+   BEGIN
+      SELECT NILAI INTO V_NILAI FROM KRS
+    IF v_NILAI = 'A' then
+       DBMS_OUTPUT.PUT_LINE (' BOBOT ADALAH = 4');
+     ELSIF v_NILAI = 'A-' then
+       DBMS_OUTPUT.PUT_LINE (' BOBOT ADALAH = 3.7');
+     ELSIF v_NILAI = 'B+' then
+       DBMS_OUTPUT.PUT_LINE (' BOBOT ADALAH = 3.3');
+     ELSIF v_NILAI = 'B' then
+       DBMS_OUTPUT.PUT_LINE (' BOBOT ADALAH = 3.0');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE (' BOBOT ADALAH = 0');
+     END IF;
+  END;

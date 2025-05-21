@@ -1,0 +1,843 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed May 7 09:20:59 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn uasmhafizakbar3b;
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SQL> conn uasmhafizakbar3b;
+Enter password:
+Connected.
+SQL> @D:\SBD\IF.SQL"
+SP2-0556: Invalid file name.
+SQL> set serveroutput on;
+SQL> @D:\SBD\IF.SQL"
+SP2-0556: Invalid file name.
+SQL>
+SQL> @D:\SBD\IF.SQL"
+SP2-0556: Invalid file name.
+SQL> DECLARE
+  2  v_dosen varchar2(30);
+  3  v_nim VARCHAR2(11);
+  4  v_namamhs VARCHAR2(30);
+  5  v_kodemk VARCHAR2(30);
+  6  v_namamk VARCHAR2(30);
+  7  v_sks NUMBER(4);
+  8  v_nilai VARCHAR2(5);
+  9  v_bobot NUMBER(3,2);
+ 10  v_prodi VARCHAR2(25);
+ 11  BEGIN
+ 12  SELECT mhs.nim ,mhs.nama , mk.kode,mk.nama,mk.sks,krs.nilai ,dsn.nama,pdi.nama
+ 13  INTO v_nim , v_namamhs, v_kodemk , v_namamk, v_sks,v_nilai , v_dosen, v_prodi
+ 14  FROM mahasiswa mhs , matakuliah mk , krs , jadwal jwl , dosen dsn, prodi pdi
+ 15  where mhs.nim = krs.nim
+ 16  and pdi.kode = mhs.prodi
+ 17  and krs.kodemk = mk.kode
+ 18  and mk.kode = jwl.kodemk
+ 19  and jwl.nip = dsn.nip
+ 20  and mhs.nim = '12350114518'
+ 21  and mk.kode = 'PIF221120'
+ 22  and dsn.nama = 'PIZAINI, S.T., M.Kom.';
+ 23  IF v_nilai = 'A' then
+ 24  v_bobot := 4;
+ 25  ELSIF v_nilai = 'A-' then
+ 26  v_bobot := 3.7;
+ 27  ELSIF v_nilai = 'B+' then
+ 28  v_bobot := 3.3;
+ 29  ELSIF v_nilai = 'B-' then
+ 30  v_bobot := 3;
+ 31  ELSIF v_nilai = 'B' then
+ 32  v_bobot := 2.7;
+ 33  ELSIF v_nilai = 'C+' then
+ 34  v_bobot := 2.5;
+ 35  ELSIF v_nilai = 'C' then
+ 36  v_bobot := 2;
+ 37  ELSIF v_nilai = 'C-' then
+ 38  v_bobot := 1.7;
+ 39  ELSIF v_nilai = 'D' then
+ 40  v_bobot := 1;
+ 41  END IF;
+ 42  DBMS_OUTPUT.PUT_LINE ('NAMA ANDA : ' || v_namamhs);
+ 43  DBMS_OUTPUT.PUT_LINE ('NIM ANDA : ' || v_nim);
+ 44  DBMS_OUTPUT.PUT_LINE ('MATAKULIAH ANDA : ' || v_namamk);
+ 45  DBMS_OUTPUT.PUT_LINE ('SKS ANDA : ' || v_sks);
+ 46  DBMS_OUTPUT.PUT_LINE ('NAMA DOSEN : ' || v_dosen);
+ 47  DBMS_OUTPUT.PUT_LINE ('NILAI ANDA : ' || v_nilai);
+ 48  DBMS_OUTPUT.PUT_LINE ('BOBOT ANDA : ' || v_bobot);
+ 49  DBMS_OUTPUT.PUT_LINE ('PRODI ANDA : ' || v_prodi);
+ 50  END;
+ 51  /
+DECLARE
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 12
+
+
+SQL> set serveroutput on;
+SQL> @"D:\SBD\IF.SQL"
+DECLARE
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 12
+
+
+SQL> set serveroutput on;
+SQL> @"D:\SBD\IF.SQL"
+DECLARE
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 12
+
+
+SQL> CONN IRAESE3BB/123;
+Connected.
+SQL> @"D:\SBD\IF.SQL"
+
+PL/SQL procedure successfully completed.
+
+SQL> SET SERVEROUTPUT ON;
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\IF.SQL"
+and krs.semester = 1;
+*
+ERROR at line 23:
+ORA-06550: line 23, column 1:
+PLS-00103: Encountered the symbol "AND" when expecting one of the following:
+( begin case declare end exception exit for goto if loop mod
+null pragma raise return select update while with
+<an identifier> <a double-quoted delimited-identifier>
+<a bind variable> << continue close current delete fetch lock
+insert open rollback savepoint set sql execute commit forall
+merge pipe purge
+ORA-06550: line 23, column 21:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+) , * & - + / at mod remainder rem <an exponent (**)> and or
+|| multiset
+ORA-06550: line 51, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable order overriding static
+member constructor map
+
+
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+SEMESTER ANDA : 1
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 17  /
+        Nilai matematika number :=35;
+                         *
+ERROR at line 2:
+ORA-06550: line 2, column 19:
+PLS-00103: Encountered the symbol "NUMBER" when expecting one of the following:
+:= . ( @ % ; not null range default character
+The symbol "." was substituted for "NUMBER" to continue.
+ORA-06550: line 3, column 15:
+PLS-00103: Encountered the symbol "INGGRIS" when expecting one of the
+following:
+:= . ( @ % ; not null range default character
+The symbol ";" was substituted for "INGGRIS" to continue.
+ORA-06550: line 4, column 18:
+PLS-00103: Encountered the symbol "INDONESIA" when expecting one of the
+following:
+:= . ( @ % ; not null range default character
+The symbol ";" was substituted for "INDONESIA" to continue.
+ORA-06550: line 5, column 17:
+PLS-00103: Encountered the symbol "NUMBER" when expecting one of the following:
+:= . ( @ % ; not null range default character
+The symbol "." was substituted for "NUMBER" to continue.
+ORA-06550: line 10, column 21:
+PLS-00103: Encountered the symbol "MATEMATIKA" when expecting one of the
+following:
+. ( * @ % & = - + ; < / > at
+
+
+SQL> @D:\SBD\CASE1.SQL"
+SP2-0556: Invalid file name.
+SQL> DECLARE
+  2     v_matematika number :=35;
+  3     v_bahasainggris number :=15;
+  4      v_bahasaindonesia number :=15;
+  5      v_agama number :=15;
+  6      v_wawancara number :=15;
+  7
+  8          Nilai number;
+  9  BEGIN
+ 10              Nilai := v_matematika + v_bahasa inggris + v_bahasaindonesia + v_agama + wawancara;
+ 11      DBMS_OUTPUT.PUT_LINE ('Nilai matematika = '||Nilai matematika);
+ 12           DBMS_OUTPUT.PUT_LINE ('Nilai bahasa inggris = '||Nilai bahasa inggris);
+ 13      DBMS_OUTPUT.PUT_LINE ('Nilai bahasa indonesia = '||Nilai bahasa indonesia);
+ 14       DBMS_OUTPUT.PUT_LINE ('Nilai agama = '||Nilai agama);
+ 15       DBMS_OUTPUT.PUT_LINE ('Nilai wawancara = '||wawancara);
+ 16  END;
+ 17  /
+         Nilai := v_matematika + v_bahasa inggris + v_bahasaindonesia + v_agama + wawancara;
+                                          *
+ERROR at line 10:
+ORA-06550: line 10, column 39:
+PLS-00103: Encountered the symbol "INGGRIS" when expecting one of the
+following:
+. ( * @ % & = - + ; < / > at in is mod remainder not rem
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec between || member submultiset
+The symbol "." was substituted for "INGGRIS" to continue.
+ORA-06550: line 11, column 54:
+PLS-00103: Encountered the symbol "MATEMATIKA" when expecting one of the
+following:
+. ( ) , * @ % & = - + < / > at in is mod remainder not rem =>
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec as betwe
+ORA-06550: line 12, column 65:
+PLS-00103: Encountered the symbol "BAHASA" when expecting one of the following:
+. ( ) , * @ % & = - + < / > at in is mod remainder not rem =>
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec as between f
+ORA-06550: line 13, column 60:
+PLS-00103: Encountered the symbol "BAHASA" when expecting one of the following:
+. ( ) , * @ % & = - + < / > at
+
+
+SQL> @"DECLARE
+string ""DECLARE" missing terminating quote (").
+SQL>    v_matematika number :=35;
+SP2-0734: unknown command beginning "v_matemati..." - rest of line ignored.
+SQL>    v_bahasainggris number :=15;
+SP2-0734: unknown command beginning "v_bahasain..." - rest of line ignored.
+SQL>     v_bahasaindonesia number :=15;
+SP2-0734: unknown command beginning "v_bahasain..." - rest of line ignored.
+SQL>     v_agama number :=15;
+SP2-0734: unknown command beginning "v_agama nu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>     v_wawancara number :=15;
+SP2-0734: unknown command beginning "v_wawancar..." - rest of line ignored.
+SQL>
+SQL>         Nilai number;
+SP2-0734: unknown command beginning "Nilai numb..." - rest of line ignored.
+SQL> BEGIN
+  2              Nilai := v_matematika + v_bahasainggris + v_bahasaindonesia + v_agama + wawancara;
+  3      DBMS_OUTPUT.PUT_LINE ('Nilai matematika = '||Nilai matematika);
+  4           DBMS_OUTPUT.PUT_LINE ('Nilai bahasa inggris = '||Nilai bahasa inggris);
+  5      DBMS_OUTPUT.PUT_LINE ('Nilai bahasa indonesia = '||Nilai bahasa indonesia);
+  6       DBMS_OUTPUT.PUT_LINE ('Nilai agama = '||Nilai agama);
+  7       DBMS_OUTPUT.PUT_LINE ('Nilai wawancara = '||wawancara);
+  8  END;
+  9
+ 10
+ 11
+ 12
+ 13  'sdbshadb
+ 14
+ 15  /
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> DECLARE
+  2     v_matematika number :=35;
+  3     v_bahasainggris number :=15;
+  4      v_bahasaindonesia number :=15;
+  5      v_agama number :=15;
+  6      v_wawancara number :=15;
+  7
+  8          Nilai number;
+  9  BEGIN
+ 10              Nilai := v_matematika + v_bahasainggris + v_bahasaindonesia + v_agama + wawancara;
+ 11      DBMS_OUTPUT.PUT_LINE ('Nilai matematika = '||Nilai matematika);
+ 12           DBMS_OUTPUT.PUT_LINE ('Nilai bahasa inggris = '||Nilai bahasa inggris);
+ 13      DBMS_OUTPUT.PUT_LINE ('Nilai bahasa indonesia = '||Nilai bahasa indonesia);
+ 14       DBMS_OUTPUT.PUT_LINE ('Nilai agama = '||Nilai agama);
+ 15       DBMS_OUTPUT.PUT_LINE ('Nilai wawancara = '||wawancara);
+ 16  END;
+ 17  /
+         DBMS_OUTPUT.PUT_LINE ('Nilai matematika = '||Nilai matematika);
+                                                            *
+ERROR at line 11:
+ORA-06550: line 11, column 54:
+PLS-00103: Encountered the symbol "MATEMATIKA" when expecting one of the
+following:
+. ( ) , * @ % & = - + < / > at in is mod remainder not rem =>
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec as between from using || member submultiset
+The symbol "." was substituted for "MATEMATIKA" to continue.
+ORA-06550: line 12, column 65:
+PLS-00103: Encountered the symbol "BAHASA" when expecting one of the following:
+. ( ) , * @ % & = - + < / > at in is mod remainder not rem =>
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec as between f
+ORA-06550: line 13, column 60:
+PLS-00103: Encountered the symbol "BAHASA" when expecting one of the following:
+. ( ) , * @ % & = - + < / > at in is mod remainder not rem =>
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec as between f
+ORA-06550: line 14, column 52:
+PLS-00103: Encountered the symbol "AGAMA" when expecting one of the following:
+. ( )
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 17  /
+         Nilai := v_matematika + v_bahasainggris + v_bahasaindonesia + v_agama + wawancara;
+                                                                                 *
+ERROR at line 10:
+ORA-06550: line 10, column 78:
+PLS-00201: identifier 'WAWANCARA' must be declared
+ORA-06550: line 10, column 6:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 17  /
+Nilai matematika = 35
+Nilai bahasa inggris = 15
+Nilai bahasa indonesia = 15
+Nilai agama = 15
+Nilai wawancara = 15
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 18  /
+Nilai matematika = 35
+Nilai bahasa inggris = 15
+Nilai bahasa indonesia = 15
+Nilai agama = 15
+Nilai wawancara = 15
+Maka Nilai Akhir adalah 95
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 25  /
+        when  'lulus prioritas 3' then v_bobot := 60;
+                                       *
+ERROR at line 15:
+ORA-06550: line 15, column 40:
+PLS-00201: identifier 'V_BOBOT' must be declared
+ORA-06550: line 15, column 40:
+PL/SQL: Statement ignored
+ORA-06550: line 16, column 40:
+PLS-00201: identifier 'V_BOBOT' must be declared
+ORA-06550: line 16, column 40:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 25  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06592: CASE not found while executing CASE statement
+ORA-06512: at line 13
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 25  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06592: CASE not found while executing CASE statement
+ORA-06512: at line 13
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 25  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06592: CASE not found while executing CASE statement
+ORA-06512: at line 12
+
+
+SQL> DECLARE
+  2      CURSOR CUR_MHS IS SELECT  MHS.NIM, MHS.NAMA NAMAMHS, MK.NAMA NAMAMK,MK.SKS,MK.KODE,KRS.NILAI
+  3      FROM MAHASISWA MHS,MATAKULIAH MK,KRS
+  4      WHERE MHS.NIM = KRS.NIM
+  5      AND KRS.KODEMK = MK.KODE
+  6      AND KRS.SEMESTER = 2
+  7      AND MHS.NIM = '12350114518';
+  8  BEGIN
+  9              FOR V_KRS IN CUR_MHS LOOP
+ 10                 DBMS_OUTPUT.PUT_LINE('NIM MAHASISWA : ' || V_KRS.NIM ||  ' | NAMA MAHASISWA : ' || V_KRS.NAMAMHS || ' | NAMA PRODI : ' || V_KRS.NAMA || ' | MATAKULIAH : ' || V_KRS.NAMAMK ||' | SKS : ' || V_KRS.SKS  || ' | KODE MATKULIAH : ' || V_KRS.KODE || ' | NILAI : ' || V_KRS.NILAI);
+ 11              END LOOP;
+ 12  END;
+ 13  /
+               DBMS_OUTPUT.PUT_LINE('NIM MAHASISWA : ' || V_KRS.NIM ||  ' | NAMA MAHASISWA : ' || V_KRS.NAMAMHS || ' | NAMA PRODI : ' || V_KRS.NAMA || ' | MATAKULIAH : ' || V_KRS.NAMAMK ||' | SKS : ' || V_KRS.SKS  || ' | KODE MATKULIAH : ' || V_KRS.KODE || ' | NILAI : ' || V_KRS.NILAI);
+                                                                                                                                               *
+ERROR at line 10:
+ORA-06550: line 10, column 144:
+PLS-00302: component 'NAMA' must be declared
+ORA-06550: line 10, column 16:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSORLOOP.SQL"
+ 13  /
+    WHERE MHS.PRODI = PDI.KODE
+                      *
+ERROR at line 4:
+ORA-06550: line 4, column 23:
+PL/SQL: ORA-00904: "PDI"."KODE": invalid identifier
+ORA-06550: line 2, column 23:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 10, column 59:
+PLS-00364: loop index variable 'V_KRS' use is invalid
+ORA-06550: line 10, column 16:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSORLOOP.SQL"
+ 12  /
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Bahasa Inggris | SKS : 2 | KODE MATKULIAH : PIF221212 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Bahasa Inggris | SKS : 2 | KODE MATKULIAH : PIF221212 | NILAI : B-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+English Communication Skill | SKS : 2 | KODE MATKULIAH : PIF221213 | NILAI : B
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Interpersonal Skill | SKS : 3 | KODE MATKULIAH : PIF221214 | NILAI : A-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Interpersonal Skill | SKS : 3 | KODE MATKULIAH : PIF221214 | NILAI : B+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Matematika Diskrit | SKS : 4 | KODE MATKULIAH : PIF221221 | NILAI : C+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Matematika Diskrit | SKS : 4 | KODE MATKULIAH : PIF221221 | NILAI : D
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Pemrograman Lanjut | SKS : 4 | KODE MATKULIAH : PIF221222 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Pemrograman Lanjut | SKS : 4 | KODE MATKULIAH : PIF221222 | NILAI : C+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Organisasi Arsitektur & Komputer | SKS : 3 | KODE MATKULIAH : PIF221232 | NILAI
+: B
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Organisasi Arsitektur & Komputer | SKS : 3 | KODE MATKULIAH : PIF221232 | NILAI
+: A-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Studi Hadist | SKS : 2 | KODE MATKULIAH : UIN222005 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Studi Hadist | SKS : 2 | KODE MATKULIAH : UIN222005 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Fiqih | SKS : 2 | KODE MATKULIAH : UIN222008 | NILAI : B
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Fiqih | SKS : 2 | KODE MATKULIAH : UIN222008 | NILAI : B
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CURSORLOOP.SQL"
+ 15  /
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Matematika Diskrit | SKS : 4 | KODE MATKULIAH : PIF221221 | NILAI : D
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Studi Hadist | SKS : 2 | KODE MATKULIAH : UIN222005 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Bahasa Inggris | SKS : 2 | KODE MATKULIAH : PIF221212 | NILAI : B-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Interpersonal Skill | SKS : 3 | KODE MATKULIAH : PIF221214 | NILAI : B+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Pemrograman Lanjut | SKS : 4 | KODE MATKULIAH : PIF221222 | NILAI : C+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Organisasi Arsitektur & Komputer | SKS : 3 | KODE MATKULIAH : PIF221232 | NILAI
+: A-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH :
+Fiqih | SKS : 2 | KODE MATKULIAH : UIN222008 | NILAI : B
+
+PL/SQL procedure successfully completed.
+
+SQL> SET LINESIZE 300;
+SQL> @"D:\SBD\CURSORLOOP.SQL"
+ 15  /
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Matematika Diskrit | SKS : 4 | KODE MATKULIAH : PIF221221 | NILAI : D
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Studi Hadist | SKS : 2 | KODE MATKULIAH : UIN222005 | NILAI : A
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Bahasa Inggris | SKS : 2 | KODE MATKULIAH : PIF221212 | NILAI : B-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Interpersonal Skill | SKS : 3 | KODE MATKULIAH : PIF221214 | NILAI : B+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Pemrograman Lanjut | SKS : 4 | KODE MATKULIAH : PIF221222 | NILAI : C+
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Organisasi Arsitektur & Komputer | SKS : 3 | KODE MATKULIAH : PIF221232 | NILAI : A-
+NIM MAHASISWA : 12350114518 | NAMA MAHASISWA : M. HAFIZ AKBAR | MATAKULIAH : Fiqih | SKS : 2 | KODE MATKULIAH : UIN222008 | NILAI : B
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+                DBMS_OUTPUT.PUT_LINE('NIM MAHASISWA : ' || V_NIM ||  ' ' || 'NAMA MAHASISWA :' || V_NAMAMHS  || ' ' || 'NAMA PRODI : ' || V_PRODI || ' ' || V_NAMA || ' ' || 'SKS :' || V_SKS  || ' ' ||'KODE MATKULIAH :' || V_KODE || ' ' || 'NILAI: ' || V_NILAI || ' ' || 'TA : ' || v_JADWAL || ' ' || 'DOSEN : ' || v_DOSEN ||);
+                                                                                                                                                                                                                                                                                                                                    *
+ERROR at line 24:
+ORA-06550: line 24, column 325:
+PLS-00103: Encountered the symbol ")" when expecting one of the following:
+( - + case mod new null <an identifier>
+<a double-quoted delimited-identifier> <a bind variable>
+continue avg count current max min prior sql stddev sum
+variance execute forall merge time timestamp interval date
+<a string literal with character set specification>
+<a number> <a single-quoted SQL string> pipe
+<an alternatively-quoted string literal with character set specification>
+<an alternatively-quoted SQL
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+                FETCH CUR_MHS INTO V_NIM, V_NAMAMHS, V_PRODI, V_NAMA, V_SKS, V_KODE, V_NILAI;
+                *
+ERROR at line 22:
+ORA-06550: line 22, column 17:
+PLS-00394: wrong number of values in the INTO list of a FETCH statement
+ORA-06550: line 22, column 17:
+PL/SQL: SQL Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+                FETCH CUR_MHS INTO V_NIM, V_NAMAMHS, V_PRODI, V_NAMA, V_SKS, V_KODE, V_NILAI, v_JADWAL, v_DOSEN;
+                *
+ERROR at line 22:
+ORA-06550: line 22, column 17:
+PLS-00394: wrong number of values in the INTO list of a FETCH statement
+ORA-06550: line 22, column 17:
+PL/SQL: SQL Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 24  /
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: D
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: B+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA English Communication Skill SKS :2 KODE MATKULIAH :PIF221213 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: B-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: A
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: A-
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: B
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: C+
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: A
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: D
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: C+
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: B+
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: A-
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA English Communication Skill SKS :2 KODE MATKULIAH :PIF221213 NILAI: B
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: B-
+NIM MAHASISWA : 12350111606 NAMA MAHASISWA :GHILMAN ZIKRA NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: A
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 25  /
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: B-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA English Communication Skill SKS :2 KODE MATKULIAH :PIF221213 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: B+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: D
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+
+PL/SQL procedure successfully completed.
+
+SQL> @D:\SBD\IF.SQL"
+SP2-0556: Invalid file name.
+SQL> CONN IRAESE3BB/123;
+Connected.
+SQL> @"D:\SBD\IF.SQL"
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> SET SERVEROUTPUT ON;
+SQL> /
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+SEMESTER ANDA : 1
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+SEMESTER ANDA : 1
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 25  /
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Bahasa Inggris SKS :2 KODE MATKULIAH :PIF221212 NILAI: B-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA English Communication Skill SKS :2 KODE MATKULIAH :PIF221213 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Interpersonal Skill SKS :3 KODE MATKULIAH :PIF221214 NILAI: B+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Matematika Diskrit SKS :4 KODE MATKULIAH :PIF221221 NILAI: D
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Pemrograman Lanjut SKS :4 KODE MATKULIAH :PIF221222 NILAI: C+
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Organisasi Arsitektur & Komputer SKS :3 KODE MATKULIAH :PIF221232 NILAI: A-
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Studi Hadist SKS :2 KODE MATKULIAH :UIN222005 NILAI: A
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+NIM MAHASISWA : 12350114518 NAMA MAHASISWA :M. HAFIZ AKBAR NAMA PRODI : TEKNIK INFORMATIKA Fiqih SKS :2 KODE MATKULIAH :UIN222008 NILAI: B
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+    AND KRS.SEMESTER = 2;
+    *
+ERROR at line 10:
+ORA-06550: line 10, column 5:
+PLS-00103: Encountered the symbol "AND" when expecting one of the following:
+begin function pragma procedure subtype type <an identifier>
+<a double-quoted delimited-identifier> current cursor delete
+exists prior
+ORA-06550: line 10, column 25:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+) , * & - + / at mod remainder rem <an exponent (**)> and or
+|| multiset
+ORA-06550: line 25, column 261:
+PLS-00103: Encountered the symbol "|" when expecting one of the following:
+( - + case mod new not null <an identifier>
+<a double-quoted delimited-identifier> <a bind variable>
+continue avg count current exists max min prior sq
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+                DBMS_OUTPUT.PUT_LINE('NIM MAHASISWA : ' || V_NIM ||  ' ' || 'NAMA MAHASISWA :' || V_NAMAMHS  || ' ' || 'NAMA PRODI : ' || V_PRODI || ' ' || V_NAMA || ' ' || 'SKS :' || V_SKS  || ' ' ||'KODE MATKULIAH :' || V_KODE || ' ' || 'NILAI: ' || V_NILAI,|| ' ' || 'JADWAL : ' || v_JADWAL || ' ' || 'DOSEN : ' || v_DSN);
+                                                                                                                                                                                                                                                                    *
+ERROR at line 25:
+ORA-06550: line 25, column 261:
+PLS-00103: Encountered the symbol "|" when expecting one of the following:
+( - + case mod new not null <an identifier>
+<a double-quoted delimited-identifier> <a bind variable>
+continue avg count current exists max min prior sql stddev
+sum variance execute forall merge time timestamp interval
+date <a string literal with character set specification>
+<a number> <a single-quoted SQL string> pipe
+<an alternatively-quoted string literal with character set specification>
+<an alternatively
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+    AND JWL.NIP = DSN.NIP
+                  *
+ERROR at line 8:
+ORA-06550: line 8, column 19:
+PL/SQL: ORA-00904: "DSN"."NIP": invalid identifier
+ORA-06550: line 2, column 23:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 18, column 21:
+PLS-00302: component 'NAMA' must be declared
+ORA-06550: line 18, column 14:
+PL/SQL: Item ignored
+ORA-06550: line 23, column 95:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 23, column 17:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 25, column 286:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 25, column 17:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+    AND DSN.NIP = JWL.NIP
+                  *
+ERROR at line 8:
+ORA-06550: line 8, column 19:
+PL/SQL: ORA-00904: "JWL"."NIP": invalid identifier
+ORA-06550: line 2, column 23:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 18, column 21:
+PLS-00302: component 'NAMA' must be declared
+ORA-06550: line 18, column 14:
+PL/SQL: Item ignored
+ORA-06550: line 23, column 95:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 23, column 17:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 25, column 286:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 25, column 17:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+    AND MK.KODE = DSN.KODEMK
+                  *
+ERROR at line 8:
+ORA-06550: line 8, column 19:
+PL/SQL: ORA-00904: "DSN"."KODEMK": invalid identifier
+ORA-06550: line 2, column 23:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 18, column 21:
+PLS-00302: component 'NAMA' must be declared
+ORA-06550: line 18, column 14:
+PL/SQL: Item ignored
+ORA-06550: line 23, column 95:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 23, column 17:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 25, column 286:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 25, column 17:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 28  /
+    AND MK.KODE = JWL.KODEMK
+                  *
+ERROR at line 7:
+ORA-06550: line 7, column 19:
+PL/SQL: ORA-00904: "JWL"."KODEMK": invalid identifier
+ORA-06550: line 2, column 23:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 17, column 21:
+PLS-00302: component 'NAMA' must be declared
+ORA-06550: line 17, column 14:
+PL/SQL: Item ignored
+ORA-06550: line 22, column 95:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 22, column 17:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 24, column 286:
+PLS-00320: the declaration of the type of this expression is incomplete or malformed
+ORA-06550: line 24, column 17:
+PL/SQL: Statement ignored
+
+
+SQL> @"D:\SBD\CURSOR.SQL"
+ 29  /
+    AND MHS.NIM = '12350114518'
+    *
+ERROR at line 9:
+ORA-06550: line 9, column 5:
+PLS-00103: Encountered the symbol "AND" when expecting one of the following:
+begin function pragma procedure subtype type <an identifier>
+<a double-quoted delimited-identifier> current cursor delete
+exists prior
+ORA-06550: line 10, column 25:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+) , * & - + / at mod remainder rem <an exponent (**)> and or
+|| multiset
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 24  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06592: CASE not found while executing CASE statement
+ORA-06512: at line 11
+
+
+SQL> @"D:\SBD\CASE1.SQL"
+ 19  /
+Nilai matematika = 35
+Nilai bahasa inggris = 15
+Nilai bahasa indonesia = 15
+Nilai agama = 15
+Nilai wawancara = 15
+Maka Nilai Akhir adalah 95
+
+PL/SQL procedure successfully completed.
+
+SQL> @"D:\SBD\IF.SQL"
+NAMA ANDA : M. HAFIZ AKBAR
+NIM ANDA : 12350114518
+MATAKULIAH ANDA : Pemograman Fundamental
+SKS ANDA : 4
+NAMA DOSEN : PIZAINI, S.T., M.Kom.
+NILAI ANDA : B-
+BOBOT ANDA : 3
+PRODI ANDA : TEKNIK INFORMATIKA
+SEMESTER ANDA : 1
+
+PL/SQL procedure successfully completed.
+
+SQL>

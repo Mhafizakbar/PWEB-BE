@@ -10,8 +10,7 @@ const app = new Hono()
 
 
 
-app.route('/pengguna', pengguna)
-
+app.route('/user', pengguna)
 app.route('/kategori', kategori).use('*', authMiddleware)
 app.route('/barang', barang).use('*', authMiddleware)
 app.route('/peminjaman', peminjaman).use('*', authMiddleware)

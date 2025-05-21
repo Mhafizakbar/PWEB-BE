@@ -1,23 +1,36 @@
 import { MiddlewareHandler } from 'hono'
 import { verify } from 'jsonwebtoken'
+import { getCookie } from 'hono/cookie'
 
-const SECRET_KEY = 'RAHASIA_KAMU'
+const USER_SECRET = 'RAHASIA_USER'
+const ADMIN_SECRET = 'RAHASIA_ADMIN'
 
 export const authMiddleware: MiddlewareHandler = async (c, next) => {
-  const authHeader = c.req.header('Authorization')
-  if (!authHeader) {
+  // Ambil token dari cookie, bukan header Authorization
+  const token = getCookie(c, 'token')
+
+  if (!token) {
     return c.json({ error: 'Token tidak ditemukan' }, 401)
   }
 
-  const token = authHeader.split(' ')[1]
-
   try {
-    const decoded = verify(token, SECRET_KEY) as {
-      id: number
-      email: string
-      role: string
+    let decoded: any
+    try {
+      decoded = verify(token, ADMIN_SECRET)
+    } catch {
+      decoded = verify(token, USER_SECRET)
     }
-    c.set('user', decoded)
+
+    if (!decoded || !decoded.role || !decoded.id || !decoded.email) {
+      return c.json({ error: 'Token tidak valid' }, 403)
+    }
+
+    c.set('user', {
+      id: decoded.id,
+      email: decoded.email,
+      role: decoded.role,
+    })
+
     await next()
   } catch (err) {
     return c.json({ error: 'Token tidak valid' }, 403)

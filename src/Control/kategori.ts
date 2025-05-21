@@ -9,7 +9,7 @@ kategori.get('/', async (c) => {
   return c.json(data)
 })
 
-kategori.post('/kategori', authMiddleware, async (c) => {
+kategori.post('/', authMiddleware, async (c) => {
   const { nama_kategori } = await c.req.json()
   if (!nama_kategori) return c.json({ error: 'nama_kategori wajib diisi' }, 400)
 
