@@ -23,7 +23,7 @@ app.use(
 app.options('*', (c) => {
   c.header('Access-Control-Allow-Origin', 'https://pweb-be-production.up.railway.app')
   c.header('Access-Control-Allow-Credentials', 'true')
-  c.header('Access-Control-Allow-Headers', 'Content-Type')
+  c.header('Access-Control-Allow-Headers', 'Authorization", "Content-Type')
   c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
   return c.body(null, 204)
 })
