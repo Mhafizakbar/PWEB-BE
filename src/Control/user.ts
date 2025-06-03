@@ -4,10 +4,24 @@ import * as bcrypt from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import authMiddleware from '../Middleware/authMiddleware'
 import { setCookie } from 'hono/cookie'
+import { cors } from 'hono/cors'
 
 const SECRET_KEY = 'RAHASIA_USER'
 
 const pengguna = new Hono()
+pengguna.use(
+  "*",
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowHeaders: ["Authorization", "Content-Type"],
+    credentials: true,
+  })
+);
 
 pengguna.post('/register', async (c) => {
   const { nama_lengkap, email, no_telepon, password, role = 'USER' } = await c.req.json()
