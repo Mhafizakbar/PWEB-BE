@@ -13,21 +13,15 @@ const app = new Hono()
 
 // CORS Middleware
 app.use(
+  "*",
   cors({
-    origin: ' http://localhost:5173',
+    origin: 
+      "http://localhost:5173",
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowHeaders: ["Authorization", "Content-Type"],
     credentials: true,
   })
-)
-
-// Manual OPTIONS for preflight
-app.options('*', (c) => {
-  c.header('Access-Control-Allow-Origin', 'https://pweb-be-production.up.railway.app')
-  c.header('Access-Control-Allow-Credentials', 'true')
-  c.header('Access-Control-Allow-Headers', 'Authorization", "Content-Type')
-  c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-  return c.body(null, 204)
-})
-
+);
 // Public route
 app.route('/user', pengguna)
 
