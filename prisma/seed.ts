@@ -1,11 +1,10 @@
-// prisma/seed.ts
 import { PrismaClient } from '../src/generated/prisma'
 import * as bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
 async function main() {
-  const emailAdmin = 'admin@domain.com'
+  const emailAdmin = 'admin@gmail.com'
 
   const existing = await prisma.pengguna.findUnique({
     where: { email: emailAdmin },

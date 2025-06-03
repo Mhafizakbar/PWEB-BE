@@ -6,8 +6,17 @@ import kategori from './Control/kategori'
 import barang from './Control/barang'
 import peminjaman from './Control/peminjaman'
 import detail from './Control/detailPeminjaman'
+import { cors } from 'hono/cors'
+
 
 const app = new Hono()
+
+app.use(
+  cors({
+    origin: 'https://pweb-be-production.up.railway.app',
+    credentials : true
+  })
+)
 
 app.route('/user', pengguna)
 app.route('/kategori', kategori).use('*', authMiddleware)
