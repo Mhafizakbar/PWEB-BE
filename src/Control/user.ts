@@ -9,17 +9,7 @@ import { cors } from 'hono/cors'
 const SECRET_KEY = 'RAHASIA_USER'
 
 const pengguna = new Hono()
-pengguna.use(
-  "*",
-  cors({
-    origin: [
-      "https://pweb-be-production.up.railway.app"
-    ],
-    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowHeaders: ["Authorization", "Content-Type"],
-    credentials: true,
-  })
-);
+
 
 pengguna.post('/register', async (c) => {
   const { nama_lengkap, email, no_telepon, password, role = 'USER' } = await c.req.json()

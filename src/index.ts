@@ -14,7 +14,7 @@ const app = new Hono()
 // CORS Middleware
 app.use(
   cors({
-    origin: 'https://pweb-be-production.up.railway.app',
+    origin: ' http://localhost:3000',
     credentials: true,
   })
 )
