@@ -158,6 +158,15 @@ exports.Prisma.PenggunaScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.Reset_password_tokenScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires_at: 'expires_at',
+  used: 'used',
+  created_at: 'created_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -182,7 +191,8 @@ exports.Prisma.ModelName = {
   detail_peminjaman: 'detail_peminjaman',
   kategori: 'kategori',
   peminjaman: 'peminjaman',
-  pengguna: 'pengguna'
+  pengguna: 'pengguna',
+  reset_password_token: 'reset_password_token'
 };
 
 /**
