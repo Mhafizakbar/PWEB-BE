@@ -7,16 +7,10 @@ import { setCookie } from 'hono/cookie'
 import { cors } from 'hono/cors'
 
 const SECRET_KEY = 'RAHASIA_USER'
+
 const pengguna = new Hono()
 
-// Pasang CORS agar bisa dipanggil dari browser (jika belum ada di app utama)
-pengguna.use('*', cors({
-  origin: '*', // kamu bisa ganti sesuai domain yang diizinkan
-  allowMethods: ['GET', 'POST', 'PUT', 'OPTIONS'],
-  allowHeaders: ['Content-Type', 'Authorization'],
-}))
 
-// Register user baru
 pengguna.post('/register', async (c) => {
   const { nama_lengkap, email, no_telepon, password, role = 'USER' } = await c.req.json()
 
@@ -51,11 +45,10 @@ pengguna.post('/register', async (c) => {
   return c.json(penggunaBaru, 201)
 })
 
-// Login user biasa
 pengguna.post('/login', async (c) => {
   const { email, password } = await c.req.json()
-
   const user = await prisma.pengguna.findUnique({ where: { email } })
+
   if (!user) return c.json({ error: 'Email tidak ditemukan' }, 404)
 
   const valid = await bcrypt.compare(password, user.password)
@@ -69,25 +62,22 @@ pengguna.post('/login', async (c) => {
 
   setCookie(c, 'token', token, {
     httpOnly: true,
-    secure: false, // ubah ke true jika pakai HTTPS
+    secure: false, // ubah jadi true kalau pakai HTTPS
     sameSite: 'lax',
-    maxAge: 60 * 5,
+    maxAge: 60 * 5, // 5 menit
     path: '/',
   })
 
   return c.json({ message: 'Login berhasil, token disimpan di cookie' })
 })
 
-// Login khusus admin
 pengguna.post('/loginadmin', async (c) => {
   const { email, password } = await c.req.json()
-
   const user = await prisma.pengguna.findUnique({ where: { email } })
+
   if (!user) return c.json({ error: 'Email tidak ditemukan' }, 404)
 
-  if (user.role !== 'ADMIN') {
-    return c.json({ error: 'Hanya admin yang bisa login di sini' }, 403)
-  }
+  if (user.role !== 'ADMIN') return c.json({ error: 'Hanya admin yang bisa login di sini' }, 403)
 
   const valid = await bcrypt.compare(password, user.password)
   if (!valid) return c.json({ error: 'Password salah' }, 401)
@@ -109,7 +99,7 @@ pengguna.post('/loginadmin', async (c) => {
   return c.json({ message: 'Login admin berhasil, token disimpan di cookie' })
 })
 
-// Dapatkan daftar pengguna (butuh autentikasi)
+// contoh endpoint dengan authMiddleware
 pengguna.get('/', authMiddleware, async (c) => {
   const users = await prisma.pengguna.findMany({
     select: { id_pengguna: true, nama_lengkap: true, email: true },
@@ -118,7 +108,6 @@ pengguna.get('/', authMiddleware, async (c) => {
   return c.json(users)
 })
 
-// Update data pengguna (butuh autentikasi)
 pengguna.put('/:id', authMiddleware, async (c) => {
   const id = Number(c.req.param('id'))
   const data = await c.req.json()
