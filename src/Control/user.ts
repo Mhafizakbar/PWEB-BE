@@ -57,7 +57,7 @@ pengguna.post('/login', async (c) => {
   const token = sign(
     { id: user.id_pengguna, email: user.email, role: user.role },
     SECRET_KEY,
-    { expiresIn: '5m' }
+    { expiresIn: '59m' }
   )
 
   setCookie(c, 'token', token, {
