@@ -1,9 +1,23 @@
 import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
+import { cors } from 'hono/cors';
+import app from '..';
+
 
 
 const barang = new Hono()
+
+app.use(
+  "*",
+  cors({
+    origin: 
+      "http://localhost:5173",
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowHeaders: ["Authorization", "Content-Type"],
+    credentials: true,
+  })
+);
 
 barang.get('/', authMiddleware, async (c) => {
   const data = await prisma.barang.findMany({
