@@ -57,14 +57,14 @@ pengguna.post('/login', async (c) => {
   const token = sign(
     { id: user.id_pengguna, email: user.email, role: user.role },
     SECRET_KEY,
-    { expiresIn: '59m' }
+    { expiresIn: '1h' }
   )
 
   setCookie(c, 'token', token, {
     httpOnly: true,
     secure: false, // ubah jadi true kalau pakai HTTPS
     sameSite: 'lax',
-    maxAge: 60 * 5, // 5 menit
+    maxAge: 60 * 60, // 60 menit
     path: '/',
   })
 
