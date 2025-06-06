@@ -63,7 +63,7 @@ pengguna.post('/login', async (c) => {
   setCookie(c, 'token', token, {
     httpOnly: true,
     secure: true, // ubah jadi true kalau pakai HTTPS
-    sameSite: 'lax',
+    sameSite: 'none',
     maxAge: 60 * 60, // 60 menit
     path: '/',
   })
