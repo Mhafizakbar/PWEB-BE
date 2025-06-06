@@ -60,12 +60,13 @@ pengguna.post('/login', async (c) => {
     { expiresIn: '1h' }
   )
 
-  setCookie(c, 'token', token, {
+   setCookie(c, 'token', token, {
     httpOnly: true,
     secure: true, // ubah jadi true kalau pakai HTTPS
     sameSite: 'none',
     maxAge: 60 * 60, // 60 menit
     path: '/',
+    
   })
 
   return c.json({ message: 'Login berhasil, token disimpan di cookie' })

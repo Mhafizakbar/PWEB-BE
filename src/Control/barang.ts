@@ -8,22 +8,14 @@ import { cors } from 'hono/cors';
 
 const barang = new Hono()
 
-barang.use(
-  "*",
-  cors({
-    origin: 
-      "http://localhost:5173",
-    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowHeaders: ["Authorization", "Content-Type"],
-    credentials: true,
-  })
-);
+
 
 barang.get('/', authMiddleware, async (c) => {
   const data = await prisma.barang.findMany({
     orderBy: { id_barang: 'asc' },
     include: { kategori: { select: { id_kategori: true, nama_kategori: true } } },
   })
+  
   return c.json(data)
 })
 
