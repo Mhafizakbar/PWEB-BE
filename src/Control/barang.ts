@@ -2,13 +2,13 @@ import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
 import { cors } from 'hono/cors';
-import app from '..';
+
 
 
 
 const barang = new Hono()
 
-app.use(
+barang.use(
   "*",
   cors({
     origin: 
