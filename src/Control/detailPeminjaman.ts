@@ -39,7 +39,7 @@ detail.post('/', authMiddleware, async (c) => {
   return c.json(detailBaru, 201)
 })
 
-detail.get('//:id', authMiddleware, async (c) => {
+detail.get('/:id', authMiddleware, async (c) => {
   const id = parseInt(c.req.param('id'))
   const data = await prisma.detail_peminjaman.findUnique({
     where: { id_detail: id },
