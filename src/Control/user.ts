@@ -12,7 +12,7 @@ const pengguna = new Hono()
 
 
 pengguna.post('/register', async (c) => {
-  const { nama_lengkap, email, no_telepon, password, role = 'USER' } = await c.req.json()
+  const { nama_lengkap, email, no_telepon, password } = await c.req.json()
    
 
   if (!nama_lengkap || !email || !password) {
@@ -40,6 +40,7 @@ pengguna.post('/register', async (c) => {
           email : email,
           password : hashPassword,
           nama_lengkap : nama_lengkap.toUpperCase(),
+          no_telepon : no_telepon,
           role : "ADMIN"
         },
       });
@@ -62,6 +63,7 @@ pengguna.post('/register', async (c) => {
           nama_lengkap: nama_lengkap.toUpperCase(),
           email: email,
           password: hashPassword,
+          no_telepon: no_telepon,
           role: "USER",
         },
       });
