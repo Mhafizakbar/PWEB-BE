@@ -1,6 +1,6 @@
 import { MiddlewareHandler} from "hono";
 import { getCookie } from "hono/cookie";
-import  {verify} from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 
 const Admin : MiddlewareHandler = async (c, next) => {
     const tokencookie = getCookie(c, "token")
@@ -18,7 +18,7 @@ const Admin : MiddlewareHandler = async (c, next) => {
         }, 401)
     }
     try{
-        const decode = verify(tokencookie, secreet)
+        const decode = jwt.verify(tokencookie, secreet)
         c.set("user", decode)
         const role = c.get("user").role
         if(role !== "ADMIN"){
