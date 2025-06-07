@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
 import { cors } from 'hono/cors';
+import Admin from '../Middleware/Admin';
 
 
 
@@ -80,6 +81,28 @@ barang.delete('/:id', authMiddleware, async (c) => {
     return c.json({ error: 'Barang tidak ditemukan atau gagal dihapus' }, 404)
   }
 })
+
+barang.post('/barang', Admin, async (c) => {
+  const {nama_barang, id_kategori, jumlah, deskripsi} = await c.req.json();
+
+  const barangBaru = await prisma.barang.create({
+    
+    data: { 
+      nama_barang, 
+      id_kategori: id_kategori, 
+      jumlah, 
+      deskripsi: deskripsi 
+    },
+  })
+
+  return c.json({
+    status: 'success',
+    message: 'Barang berhasil ditambahkan',
+    barang: barangBaru
+  }, 201)
+});
+
+
 
 
 export default barang

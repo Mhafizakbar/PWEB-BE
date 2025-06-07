@@ -1,9 +1,41 @@
-import { MiddlewareHandler } from 'hono'
+import { MiddlewareHandler} from "hono";
+import { getCookie } from "hono/cookie";
+import  {verify} from "jsonwebtoken";
 
-export const adminMiddleware: MiddlewareHandler = async (c, next) => {
-  const user = c.get('user')
-  if (!user || user.role !== 'ADMIN') {
-    return c.json({ error: 'Akses hanya untuk admin' }, 403)
-  }
-  await next()
+const Admin : MiddlewareHandler = async (c, next) => {
+    const tokencookie = getCookie(c, "token")
+    const secreet = process.env.ACCESS_TOKEN_SECRET
+    if(!tokencookie){
+        return c.json({
+            status : "error",
+            message : "Token missing"
+        }, 401)
+    }
+    if(!secreet){
+        return c.json({
+            status : "error",
+            message : "Missing secreet token"
+        }, 401)
+    }
+    try{
+        const decode = verify(tokencookie, secreet)
+        c.set("user", decode)
+        const role = c.get("user").role
+        if(role !== "ADMIN"){
+            return c.json({
+                status : "error",
+                message : "Anda bukan admin"
+            },401)  
+        }
+        await next()
+    }catch(e){
+        return c.json ({
+            status : "error",
+            message : "Invalid token"
+        },401)
+
+    }
+   
 }
+
+export default Admin;
