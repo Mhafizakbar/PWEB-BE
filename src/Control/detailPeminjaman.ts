@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
+import Admin from '../Middleware/Admin'
 
 const detail = new Hono()
 
@@ -68,7 +69,7 @@ detail.put('/:id', authMiddleware, async (c) => {
   }
 })
 
-detail.delete('/:id', authMiddleware, async (c) => {
+detail.delete('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   try {
     await prisma.detail_peminjaman.delete({ where: { id_detail: id } })

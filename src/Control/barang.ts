@@ -72,7 +72,7 @@ barang.put('/:id', authMiddleware, async (c) => {
   }
 })
 
-barang.delete('/:id', authMiddleware, async (c) => {
+barang.delete('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   try {
     await prisma.barang.delete({ where: { id_barang: id } })
