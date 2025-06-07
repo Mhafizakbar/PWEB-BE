@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
+import Admin from '../Middleware/Admin'
 
 const peminjaman = new Hono()
 
@@ -17,7 +18,7 @@ peminjaman.get('/', authMiddleware, async (c) => {
   return c.json(data)
 })
 
-peminjaman.post('/', authMiddleware, async (c) => {
+peminjaman.post('/', Admin, async (c) => {
   const { id_pengguna, tanggal_kembali, detail } = await c.req.json()
   if (!id_pengguna || !tanggal_kembali || !Array.isArray(detail)) {
     return c.json({ error: 'id_pengguna, tanggal_kembali, dan detail wajib diisi' }, 400)
@@ -57,7 +58,7 @@ peminjaman.get('/:id', authMiddleware, async (c) => {
   if (!data) return c.json({ error: 'Data tidak ditemukan' }, 404)
   return c.json(data)
 })
-peminjaman.put('/:id', authMiddleware, async (c) => {
+peminjaman.put('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   const { tanggal_kembali, status } = await c.req.json()
 
@@ -74,7 +75,7 @@ peminjaman.put('/:id', authMiddleware, async (c) => {
     return c.json({ error: 'Gagal update peminjaman' }, 500)
   }
 })
-peminjaman.delete('/:id', authMiddleware, async (c) => {
+peminjaman.delete('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   try {
     await prisma.detail_peminjaman.deleteMany({ where: { id_peminjaman: id } })

@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import prisma from '../db'
 import { authMiddleware } from '../Middleware/authMiddleware'
+import Admin from '../Middleware/Admin'
 
 const kategori = new Hono()
 
@@ -9,7 +10,7 @@ kategori.get('/', async (c) => {
   return c.json(data)
 })
 
-kategori.post('/', authMiddleware, async (c) => {
+kategori.post('/', Admin, async (c) => {
   const { nama_kategori } = await c.req.json()
   if (!nama_kategori) return c.json({ error: 'nama_kategori wajib diisi' }, 400)
 
@@ -25,7 +26,7 @@ kategori.get('/:id', async (c) => {
 })
 
 
-kategori.put('/:id', authMiddleware, async (c) => {
+kategori.put('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   const { nama_kategori } = await c.req.json()
   if (!nama_kategori) return c.json({ error: 'nama_kategori wajib diisi' }, 400)
@@ -42,7 +43,7 @@ kategori.put('/:id', authMiddleware, async (c) => {
 })
 
 
-kategori.delete('/:id', authMiddleware, async (c) => {
+kategori.delete('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
 
   try {

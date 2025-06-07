@@ -5,6 +5,7 @@ import { sign } from 'jsonwebtoken'
 import authMiddleware from '../Middleware/authMiddleware'
 import { setCookie } from 'hono/cookie'
 import { cors } from 'hono/cors'
+import Admin from '../Middleware/Admin'
 
 const SECRET_KEY = 'RAHASIA_USER'
 
@@ -105,7 +106,7 @@ pengguna.post('/loginadmin', async (c) => {
 })
 
 // contoh endpoint dengan authMiddleware
-pengguna.get('/', authMiddleware, async (c) => {
+pengguna.get('/', Admin, async (c) => {
   const users = await prisma.pengguna.findMany({
     select: { id_pengguna: true, nama_lengkap: true, email: true },
     orderBy: { id_pengguna: 'asc' },
@@ -113,7 +114,7 @@ pengguna.get('/', authMiddleware, async (c) => {
   return c.json(users)
 })
 
-pengguna.put('/:id', authMiddleware, async (c) => {
+pengguna.put('/:id', Admin, async (c) => {
   const id = Number(c.req.param('id'))
   const data = await c.req.json()
 

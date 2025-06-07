@@ -22,7 +22,7 @@ detail.get('/', authMiddleware, async (c) => {
   return c.json(data)
 })
 
-detail.post('/', authMiddleware, async (c) => {
+detail.post('/', Admin, async (c) => {
   const { id_peminjaman, id_barang, jumlah_pinjam } = await c.req.json()
   if (!id_peminjaman || !id_barang || !jumlah_pinjam)
     return c.json({ error: 'Semua field wajib diisi' }, 400)
@@ -53,7 +53,7 @@ detail.get('/:id', authMiddleware, async (c) => {
   return c.json(data)
 })
 
-detail.put('/:id', authMiddleware, async (c) => {
+detail.put('/:id', Admin, async (c) => {
   const id = parseInt(c.req.param('id'))
   const { jumlah_pinjam } = await c.req.json()
   if (!jumlah_pinjam) return c.json({ error: 'jumlah_pinjam wajib diisi' }, 400)
