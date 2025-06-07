@@ -20,7 +20,7 @@ barang.get('/', authMiddleware, async (c) => {
   return c.json(data)
 })
 
-barang.post('/', authMiddleware, async (c) => {
+barang.post('/', Admin, async (c) => {
   const { nama_barang, id_kategori, jumlah, deskripsi } = await c.req.json()
   if (!nama_barang || !jumlah)
     return c.json({ error: 'nama_barang dan jumlah wajib diisi' }, 400)
@@ -82,25 +82,7 @@ barang.delete('/:id', authMiddleware, async (c) => {
   }
 })
 
-barang.post('/barang', Admin, async (c) => {
-  const {nama_barang, id_kategori, jumlah, deskripsi} = await c.req.json();
 
-  const barangBaru = await prisma.barang.create({
-    
-    data: { 
-      nama_barang, 
-      id_kategori: id_kategori, 
-      jumlah, 
-      deskripsi: deskripsi 
-    },
-  })
-
-  return c.json({
-    status: 'success',
-    message: 'Barang berhasil ditambahkan',
-    barang: barangBaru
-  }, 201)
-});
 
 
 
