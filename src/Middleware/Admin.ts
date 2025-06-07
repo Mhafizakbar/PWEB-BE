@@ -4,7 +4,7 @@ import  {verify} from "jsonwebtoken";
 
 const Admin : MiddlewareHandler = async (c, next) => {
     const tokencookie = getCookie(c, "token")
-    const secreet = process.env.ACCESS_TOKEN_SECRET
+    const secreet = process.env.SECREET_KEY
     if(!tokencookie){
         return c.json({
             status : "error",
