@@ -18,7 +18,7 @@ peminjaman.get('/', authMiddleware, async (c) => {
   return c.json(data)
 })
 
-peminjaman.post('/', Admin, async (c) => {
+peminjaman.post('/', authMiddleware, async (c) => {
   const { id_pengguna, tanggal_kembali, detail } = await c.req.json()
   if (!id_pengguna || !tanggal_kembali || !Array.isArray(detail)) {
     return c.json({ error: 'id_pengguna, tanggal_kembali, dan detail wajib diisi' }, 400)
