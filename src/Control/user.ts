@@ -132,5 +132,28 @@ pengguna.put('/:id', Admin, async (c) => {
 
   return c.json(updated)
 })
+pengguna.delete('/:id', Admin, async (c) => {
+  const id = Number(c.req.param('id'))
+
+  try {
+    const user = await prisma.pengguna.findUnique({
+      where: { id_pengguna: id },
+    })
+
+    if (!user) {
+      return c.json({ error: 'User tidak ditemukan' }, 404)
+    }
+
+    await prisma.pengguna.delete({
+      where: { id_pengguna: id },
+    })
+
+    return c.json({ message: 'User berhasil dihapus' })
+  } catch (error) {
+    console.error('Delete user error:', error)
+    return c.json({ error: 'Gagal menghapus user' }, 500)
+  }
+})
+
 
 export default pengguna
