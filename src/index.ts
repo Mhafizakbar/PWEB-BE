@@ -15,10 +15,10 @@ const app = new Hono()
 app.use(
   "*",
   cors({
-    origin: 
+    origin: [
       "http://localhost:5173",
-      
-
+      "https://itventory-himatif.vercel.app/"
+    ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
     credentials: true,
