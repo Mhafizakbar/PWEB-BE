@@ -18,7 +18,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://itventory-himatif.vercel.app"
+      "https://itventory-himatif.vercel.app",
+      "https://itventoryhimatif-production.up.railway.app/",
     ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
