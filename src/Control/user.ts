@@ -106,7 +106,7 @@ pengguna.post('/loginadmin', async (c) => {
 })
 
 // contoh endpoint dengan authMiddleware
-pengguna.get('/', Admin, async (c) => {
+pengguna.get('/', authMiddleware, async (c) => {
   const users = await prisma.pengguna.findMany({
     select: { id_pengguna: true, nama_lengkap: true, email: true },
     orderBy: { id_pengguna: 'asc' },
