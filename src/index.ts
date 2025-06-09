@@ -48,6 +48,12 @@ serve({
   port: PORT,
 })
 
+app.get('/', (c) => {
+    return c.json({
+        status: "success",
+        message: "Selamat datang di ITVENTORY API🔥",
+    }, 200)
+})
 console.log(`🚀 Server running on http://localhost:${PORT}`)
 
 export default app
