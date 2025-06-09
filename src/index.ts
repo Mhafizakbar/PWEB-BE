@@ -19,6 +19,7 @@ app.use(
       "http://localhost:5173",
       "https://itventory-himatif.vercel.app",
       "https://itventoryhimatif-production.up.railway.app",
+      "https://itventorytif.vercel.app",
     ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
