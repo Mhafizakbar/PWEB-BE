@@ -59,7 +59,7 @@ peminjaman.get('/:id', authMiddleware, async (c) => {
   if (!data) return c.json({ error: 'Data tidak ditemukan' }, 404)
   return c.json(data)
 })
-peminjaman.put('/:id', Admin, async (c) => {
+peminjaman.put('/:id', authMiddleware, async (c) => {
   const id = parseInt(c.req.param('id'))
   const { tanggal_kembali, status } = await c.req.json()
 
